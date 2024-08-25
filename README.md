@@ -1,10 +1,7 @@
-# Data Project Template
+# Unified Python Project Template
 
 ![Static Badge](https://img.shields.io/badge/Project%20Template-python-yellow?style=plastic)
 
-
-## Cookiecutter Data Science
-This project template is a simplified version of the [Cookiecutter Data Science](https://cookiecutter-data-science.drivendata.org) template.
 
 
 ## Duplicating the .env File
