@@ -1,16 +1,27 @@
+# Use the official Python image with Python 3.11
 FROM python:3.11
 
+# Add a non-root user to run the application
 RUN useradd -m -u 1000 user
 
+# Set the working directory inside the container
 WORKDIR /app
 
-COPY ./requirements.txt /app/requirements.txt
+# Install Poetry
+RUN curl -sSL https://install.python-poetry.org | python3 -
 
-RUN pip install --upgrade pip \
-    pip install --no-cache-dir --upgrade -r /app/requirements.txt
+# Copy the pyproject.toml and poetry.lock files to the container
+COPY ./pyproject.toml ./poetry.lock* /app/
 
+# Install production dependencies using Poetry
+RUN poetry config virtualenvs.create false \
+    && poetry install --no-dev --no-interaction --no-ansi
+
+# Switch to the non-root user
 USER user
 
+# Copy the rest of the application code
 COPY --link --chown=1000 ./ /app
 
-CMD ["python", "app.py"]
+# Specify the command to run the application
+CMD ["python", "main.py"]
