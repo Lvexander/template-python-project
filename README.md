@@ -65,3 +65,21 @@ This command creates a copy of `.env.example` and names it `.env`, allowing you 
 │
 └── README.md          <- The top-level README file providing an overview of the project
 ```
+
+
+## Setting Up the Development Environment
+
+To simplify the setup of the development environment, a `Makefile` is included in this project. The `venv` target is used to install the project dependencies and activate the virtual environment managed by Poetry.
+
+1. Open a terminal and navigate to the root directory of the project.
+2. Run the following command:
+
+   ```sh
+   make venv
+   ```
+
+3. The command will:
+   - Install all the required dependencies.
+   - Automatically activate the virtual environment.
+
+After running the command, your terminal prompt may change to indicate that the virtual environment is active (e.g., `(project-name)`).
