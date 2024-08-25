@@ -3,7 +3,6 @@
 ![Static Badge](https://img.shields.io/badge/Project%20Template-python-yellow?style=plastic)
 
 
-
 ## Duplicating the .env File
 To set up your environment variables, you need to duplicate the `.env.example` file and rename it to `.env`. You can do this manually or using the following terminal command:
 
@@ -37,18 +36,18 @@ This command creates a copy of `.env.example` and names it `.env`, allowing you 
 ├── references         <- Supporting documentation such as data dictionaries, manuals, and other reference materials
 │
 ├── reports            <- Generated analysis outputs, which can be in formats such as HTML, PDF, LaTeX, etc.
-    │
+│   │
 │   └── figures        <- Generated visualizations and graphics used in reports
 │
 ├── scripts            <- Standalone scripts for various project-related tasks
 │
-└── src                <- Source code for the project
-    │
-    ├── __init__.py    <- Marks the directory as a Python module
-    │
-    ├── module         <- Project-specific modules and packages       
-    │
-    └── util           <- Utility functions and helper methods for the project     
+├── src                <- Source code for the project
+│   │
+│   ├── __init__.py    <- Marks the directory as a Python module
+│   │
+│   ├── module         <- Project-specific modules and packages       
+│   │
+│   └── util           <- Utility functions and helper methods for the project     
 │
 ├── tests              <- Unit tests and other test scripts to ensure code reliability
 │
@@ -65,8 +64,4 @@ This command creates a copy of `.env.example` and names it `.env`, allowing you 
 ├── pyproject.toml     <- Configuration file for managing dependencies and project settings using Poetry
 │
 └── README.md          <- The top-level README file providing an overview of the project
-
-
 ```
-
---------
