@@ -37,11 +37,13 @@ This command creates a copy of `.env.example` and names it `.env`, allowing you 
 ├── references         <- Supporting documentation such as data dictionaries, manuals, and other reference materials
 │
 ├── reports            <- Generated analysis outputs, which can be in formats such as HTML, PDF, LaTeX, etc.
+    │
 │   └── figures        <- Generated visualizations and graphics used in reports
 │
 ├── scripts            <- Standalone scripts for various project-related tasks
 │
 └── src                <- Source code for the project
+    │
     ├── __init__.py    <- Marks the directory as a Python module
     │
     ├── module         <- Project-specific modules and packages       
