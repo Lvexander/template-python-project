@@ -51,6 +51,8 @@ This command creates a copy of `.env.example` and names it `.env`, allowing you 
 │
 ├── tests              <- Unit tests and other test scripts to ensure code reliability
 │
+├── .dockerignore      <- Specifies files and directories to exclude when building a Docker image to keep the image lightweight.
+│
 ├── .env.example       <- Example file for environment variables
 │
 ├── .gitignore         <- Git configuration file specifying files and directories to ignore
