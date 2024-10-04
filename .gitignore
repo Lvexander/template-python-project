@@ -8,7 +8,6 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-env/
 build/
 develop-eggs/
 dist/
@@ -87,9 +86,11 @@ celerybeat-schedule
 .env
 
 # virtualenv
+env/
+ENV/
 .venv
 venv/
-ENV/
+.conda/
 
 # Spyder project settings
 .spyderproject
@@ -113,3 +114,14 @@ ENV/
 
 # Windows generated file
 **/~$*
+
+# Ignore testing on notebook
+notebooks/test*.ipynb
+
+# Ignore Tawos dataset original SQL
+data/external/tawos/TAWOS.sql
+
+#  Ignore results logs dir
+logs/*
+!logs/.gitkeep
+*/wandb
