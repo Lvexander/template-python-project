@@ -24,4 +24,4 @@ USER user
 COPY --link --chown=1000 ./ /app
 
 # Specify the command to run the application
-CMD ["python", "main.py"]
+CMD ["python", "app.py"]
