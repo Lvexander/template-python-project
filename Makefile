@@ -1,7 +1,7 @@
 DOCKER_IMAGE_NAME=iamge-name
 
 ifeq ($(OS),Windows_NT)
-    OS_NAME := Windows
+    OS_NAME := Windows_NT
 else
     OS_NAME := $(shell uname -s)
 endif
@@ -11,10 +11,20 @@ endif
 
 
 env:
-	@echo "Dependencies installation"
+	@echo "Dependencies installation on $(OS_NAME)"
 	@poetry config virtualenvs.in-project true
+ifeq ($(OS_NAME), Darwin)
 	@poetry env use python3.11
 	@poetry install --with dev
+else ifeq ($(OS_NAME), Linux)
+	@poetry env use python3.11
+	@poetry install --with dev
+else ifeq ($(OS_NAME), Windows_NT)
+	@poetry env use python
+	@poetry install --with dev
+else
+	@echo "Unknown system"
+endif
 
 
 app:
