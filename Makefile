@@ -1,35 +1,15 @@
 DOCKER_IMAGE_NAME=iamge-name
 
-ifeq ($(OS),Windows_NT)
-    OS_NAME := Windows_NT
-else
-    OS_NAME := $(shell uname -s)
-endif
+.PHONY: venv app build run clean
 
 
-.PHONY: remove-venv build run clean
-
-
-env:
-	@echo "Dependencies installation on $(OS_NAME)"
-	@poetry config virtualenvs.in-project true
-ifeq ($(OS_NAME), Darwin)
-	@poetry env use python3.11
-	@poetry install --with dev
-else ifeq ($(OS_NAME), Linux)
-	@poetry env use python3.11
-	@poetry install --with dev
-else ifeq ($(OS_NAME), Windows_NT)
-	@poetry env use python
-	@poetry install --with dev
-else
-	@echo "Unknown system"
-endif
+venv:
+	uv sync
+	source .venv/bin/activate
 
 
 app:
-	@echo "Running on: $(OS_NAME)"
-	@poetry run python app.py
+	uv run app.py
 	
 
 build:
