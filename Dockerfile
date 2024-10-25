@@ -1,27 +1,27 @@
-# Use the official Python image with Python 3.11
-FROM python:3.11
+# Use the official Python image with Python 3.13
+FROM python:3.13-slim
 
-# Add a non-root user to run the application
-RUN useradd -m -u 1000 user
 
 # Set the working directory inside the container
 WORKDIR /app
 
-# Install Poetry
-RUN curl -sSL https://install.python-poetry.org | python3 -
+# Get curl (and certificates) to download uv installer
+RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates
 
-# Copy the pyproject.toml and poetry.lock files to the container
-COPY ./pyproject.toml ./poetry.lock* /app/
+# Download the latest uv installer
+ADD https://astral.sh/uv/install.sh /uv-installer.sh
 
-# Install production dependencies using Poetry
-RUN poetry config virtualenvs.create false \
-    && poetry install --no-dev --no-interaction --no-ansi
+# Run the uv installer then remove it
+RUN sh /uv-installer.sh && rm /uv-installer.sh
 
-# Switch to the non-root user
-USER user
+# Ensure the installed binary is on the `PATH`
+ENV PATH="/root/.cargo/bin/:$PATH"
 
-# Copy the rest of the application code
-COPY --link --chown=1000 ./ /app
+# Copy the project into the image
+ADD . /app
 
-# Specify the command to run the application
-CMD ["python", "app.py"]
+# Sync the project into a new environment, using the frozen lockfile
+RUN uv sync --frozen
+
+# Set CMD
+CMD ["uv", "run", "lambda_function.handler"]
