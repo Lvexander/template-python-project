@@ -1,4 +1,4 @@
-DOCKER_IMAGE_NAME=iamge-name
+DOCKER_IMAGE_NAME=image-name
 
 .PHONY: venv app build run clean
 
