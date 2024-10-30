@@ -1,6 +1,5 @@
 [project]
 name = "template-python-project"
-authors = ["Levi Alexander <alexander.hahahahaha@gmail.com>"]
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
