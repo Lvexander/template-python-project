@@ -52,7 +52,7 @@ fixable = ["ALL"]
 unfixable = ["F401"]
 
 [tool.ruff.format]
-indent-style = "tab"
+indent-style = "space"
 quote-style = "double"
 line-ending = "auto"
 
