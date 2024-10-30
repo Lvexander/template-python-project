@@ -11,7 +11,8 @@ IMAGE_TAG ?= latest
 
 
 venv:
-	uv sync
+	rm -rf .venv
+	uv sync --all-extras --dev
 	source .venv/bin/activate
 
 
