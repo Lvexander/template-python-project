@@ -13,6 +13,8 @@ dependencies = [
 [tool.uv]
 dev-dependencies = [
     "icecream>=2.1.3",
+    "pytest>=8.3.3",
+    "ruff>=0.7.1",
 ]
 
 [tool.ruff]
@@ -22,30 +24,30 @@ indent-width = 4
 
 [tool.ruff.lint]
 select = [
-  "F",      # Pyflakes
-  "W6",
-  "E71",
-  "E72",
-  "E112",   # no-indented-block
-  "E113",   # unexpected-indentation
-  "E203",   # whitespace-before-punctuation
-  "E272",   # multiple-spaces-before-keyword
-  "E303",   # too-many-blank-lines
-  "E304",   # blank-line-after-decorator
-  "E501",   # line-too-long
-  "E702",   # multiple-statements-on-one-line-semicolon
-  "E703",   # useless-semicolon
-  "E731",   # lambda-assignment
-  "W191",   # tab-indentation
-  "W291",   # trailing-whitespace
-  "W293",   # blank-line-with-whitespace
-  "UP039",  # unnecessary-class-parentheses
-  "C416",   # unnecessary-comprehension
-  "RET506", # superfluous-else-raise
-  "RET507", # superfluous-else-continue
-  "A",      # builtin-variable-shadowing
-  "SIM105", # suppressible-exception
-  "FURB110" # if-exp-instead-of-or-operator
+  "F",      # Pyflakes: Basic linting to detect syntax errors and unused variables.
+  "W6",     # Checks Python 3-specific syntax and conventions for backward compatibility.
+  "E71",    # Flags common syntax errors, like missing parentheses in print/assert statements.
+  "E72",    # Ensures correct indentation in Python files for consistent style.
+  "E112",   # no-indented-block: Requires indented code blocks, avoiding syntax errors.
+  "E113",   # unexpected-indentation: Prevents misaligned indentation in code blocks.
+  "E203",   # whitespace-before-punctuation: No spaces before punctuation for clean syntax.
+  "E272",   # multiple-spaces-before-keyword: Flags multiple spaces before keywords.
+  "E303",   # too-many-blank-lines: Limits blank lines to improve readability.
+  "E304",   # blank-line-after-decorator: Ensures no blank line appears after decorators.
+  "E501",   # line-too-long: Enforces line length limits (e.g., 79 or 88 characters).
+  "E702",   # multiple-statements-on-one-line-semicolon: One statement per line for clarity.
+  "E703",   # useless-semicolon: Flags unnecessary semicolons; Python doesn’t require them.
+  "E731",   # lambda-assignment: Discourages assigning lambdas; use `def` for readability.
+  "W191",   # tab-indentation: Enforces spaces over tabs, aligning with Python's style.
+  "W291",   # trailing-whitespace: Flags trailing whitespace at the end of lines.
+  "W293",   # blank-line-with-whitespace: Ensures blank lines are fully empty.
+  "UP039",  # unnecessary-class-parentheses: Flags unnecessary parentheses in class definitions.
+  "C416",   # unnecessary-comprehension: Discourages redundant comprehensions.
+  "RET506", # superfluous-else-raise: Redundant `else` after `raise` can be removed.
+  "RET507", # superfluous-else-continue: Redundant `else` after `continue` can be removed.
+  "A",      # builtin-variable-shadowing: Prevents variable names that shadow built-ins.
+  "SIM105", # suppressible-exception: Flags exceptions that could be caught or suppressed.
+  "FURB110" # if-exp-instead-of-or-operator: Prefer `or` operator over `if` for conciseness.
 ]
 fixable = ["ALL"]
 unfixable = ["F401"]
@@ -61,3 +63,8 @@ exclude = [
   "notebooks/",
   "reports/",
 ]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+addopts = "--quiet"
+testpaths = ["tests"]

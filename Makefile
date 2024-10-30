@@ -10,7 +10,15 @@ venv:
 
 app:
 	uv run app.py
-	
+
+
+test:
+	uv run pytest
+
+
+format:
+	uv run ruff format
+
 
 build:
 	docker build --tag $(DOCKER_IMAGE_NAME):latest .
