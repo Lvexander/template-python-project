@@ -1,6 +1,13 @@
-DOCKER_IMAGE_NAME=image-name
+ifneq (,$(wildcard .env))
+    include .env
+    export
+endif
 
-.PHONY: venv app build run clean
+IMAGE_NAME ?= image-name
+IMAGE_TAG ?= latest
+
+
+.PHONY: venv run test format remove-cache docker-build docker-run docker-clean
 
 
 venv:
@@ -8,7 +15,7 @@ venv:
 	source .venv/bin/activate
 
 
-app:
+run:
 	uv run app.py
 
 
@@ -20,13 +27,17 @@ format:
 	uv run ruff format
 
 
-build:
-	docker build --tag $(DOCKER_IMAGE_NAME):latest .
+remove-cache:
+	find . -type d \( -name "__pycache__" -o -name ".pytest_cache" -o -name ".ruff_cache" \) -exec rm -rf {} +
 
 
-run: build
-	docker run --rm $(DOCKER_IMAGE_NAME):latest
+docker-build:
+	docker build --tag $(IMAGE_NAME):$(IMAGE_TAG) .
 
 
-clean:
-	docker rmi $(DOCKER_IMAGE_NAME):latest || true
+docker-run: docker-build
+	docker run --rm -it $(IMAGE_NAME):$(IMAGE_TAG)
+
+
+docker-clean:
+	docker rmi $(IMAGE_NAME):$(IMAGE_TAG) || true
